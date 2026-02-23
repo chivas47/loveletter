@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affirmations for Raine ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a853;
+            --gold-light: #f0cc7a;
+            --gold-pale: rgba(212, 168, 83, 0.15);
+            --rose: #c9758a;
+            --rose-pale: rgba(201, 117, 138, 0.2);
+            --cream: #f0e6d3;
+            --cream-dim: #c9b49a;
+            --deep: #08060f;
+            --deep2: #110d1f;
+            --deep3: #0d1130;
+            --text: #ede0cc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background: var(--deep);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px 60px;
+        }
+
+        /* ── BACKGROUND LAYERS ─────────────────────────────── */
+        .bg-gradient {
+            position: fixed; inset: 0; z-index: 0;
+            background:
+                radial-gradient(ellipse 120% 80% at 20% 0%, #1a0a2e 0%, transparent 60%),
+                radial-gradient(ellipse 80% 60% at 80% 10%, #0c1640 0%, transparent 55%),
+                radial-gradient(ellipse 100% 70% at 50% 100%, #1a0820 0%, transparent 60%),
+                linear-gradient(180deg, #08060f 0%, #100c22 40%, #08060f 100%);
+        }
+
+        .aurora {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse 200% 40% at 50% -10%, rgba(100, 60, 180, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 150% 30% at 20% 10%, rgba(60, 100, 200, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 150% 30% at 80% 5%, rgba(180, 80, 140, 0.10) 0%, transparent 50%);
+            animation: auroraShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes auroraShift {
+            0% { opacity: 0.6; transform: scaleX(1) scaleY(1); }
+            50% { opacity: 1; transform: scaleX(1.05) scaleY(1.1); }
+            100% { opacity: 0.7; transform: scaleX(0.98) scaleY(1); }
+        }
+
+        /* ── MOON ──────────────────────────────────────────── */
+        .moon {
+            position: fixed;
+            top: 40px; right: 70px;
+            width: 90px; height: 90px;
+            z-index: 1; pointer-events: none;
+        }
+        .moon-body {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #fffef0, #f5e8c8 40%, #ddc99e 80%);
+            box-shadow:
+                0 0 30px 10px rgba(245, 228, 180, 0.25),
+                0 0 80px 30px rgba(245, 228, 180, 0.12),
+                inset -8px -5px 20px rgba(0,0,0,0.15);
+            animation: moonGlow 8s ease-in-out infinite alternate;
+        }
+        .moon-craters {
+            position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+        }
+        .moon-craters::before {
+            content: '';
+            position: absolute;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.06);
+            top: 55%; left: 60%;
+            box-shadow: -22px -30px 0 8px rgba(0,0,0,0.04), 10px -10px 0 5px rgba(0,0,0,0.03);
+        }
+        @keyframes moonGlow {
+            0% { box-shadow: 0 0 30px 10px rgba(245, 228, 180, 0.2), 0 0 80px 30px rgba(245, 228, 180, 0.08), inset -8px -5px 20px rgba(0,0,0,0.15); }
+            100% { box-shadow: 0 0 40px 15px rgba(245, 228, 180, 0.3), 0 0 100px 40px rgba(245, 228, 180, 0.15), inset -8px -5px 20px rgba(0,0,0,0.15); }
+        }
+
+        /* ── STARS (static twinkling) ──────────────────────── */
+        .stars-canvas {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        }
+
+        /* ── SHOOTING STAR ─────────────────────────────────── */
+        .shooting-star {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            top: var(--top);
+            left: var(--left);
+            width: var(--len);
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255, 248, 210, 0.7) 55%, rgba(255,255,255,0.95) 100%);
+            border-radius: 100px;
+            transform: rotate(var(--angle));
+            transform-origin: right center;
+            opacity: 0;
+            animation: shootingStar var(--dur) var(--delay) forwards;
+        }
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 5px 2px rgba(255, 248, 210, 0.7);
+        }
+
+        @keyframes shootingStar {
+            0%   { opacity: 0; transform: rotate(var(--angle)) translateX(0); }
+            6%   { opacity: 0.9; }
+            85%  { opacity: 0.6; }
+            100% { opacity: 0; transform: rotate(var(--angle)) translateX(calc(var(--travel) * -1)); }
+        }
+
+        /* ── FLOATING PARTICLES ────────────────────────────── */
+        .particle {
+            position: fixed; z-index: 1; pointer-events: none;
+            width: 2px; height: 2px;
+            border-radius: 50%;
+            background: rgba(212, 168, 83, 0.7);
+            box-shadow: 0 0 6px rgba(212, 168, 83, 0.9);
+            animation: particleFloat var(--dur) var(--delay) infinite linear;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) translateX(calc(sin(var(--t)) * 40px)); opacity: 0; }
+        }
+
+        /* ── CONTAINER ─────────────────────────────────────── */
+        .container {
+            max-width: 720px; width: 100%;
+            position: relative; z-index: 10;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* ── HEADER ────────────────────────────────────────── */
+        header {
+            text-align: center;
+            margin-bottom: 56px;
+            animation: headerReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .pre-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.85em;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.8;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(3em, 10vw, 5.5em);
+            line-height: 1;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #b8883a 0%, #f0cc7a 30%, #d4a853 50%, #ffe08a 70%, #c9a060 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 30px rgba(212, 168, 83, 0.3));
+            margin-bottom: 10px;
+        }
+
+        .subtitle-hebrew {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5em;
+            color: var(--rose);
+            margin-bottom: 6px;
+            opacity: 0.9;
+        }
+
+        .subtitle {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            font-size: 1.15em;
+            color: var(--cream-dim);
+            opacity: 0.75;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            display: flex; align-items: center; gap: 16px;
+            margin: 28px auto;
+            width: 300px;
+        }
+        .divider-line {
+            flex: 1; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.5), transparent);
+        }
+        .divider-gem {
+            width: 8px; height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px rgba(212, 168, 83, 0.6);
+        }
+
+        @keyframes headerReveal {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── CARD ──────────────────────────────────────────── */
+        .card-wrapper {
+            width: 100%; perspective: 1200px;
+            margin-bottom: 36px;
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            min-height: 340px;
+            border-radius: 24px;
+            padding: 56px 48px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.97) translateY(6px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+
+            /* Glass morphism */
+            background: rgba(255, 255, 255, 0.025);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            /* Layered borders */
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            outline: 1px solid rgba(255, 255, 255, 0.04);
+            outline-offset: 4px;
+
+            /* Shadows */
+            box-shadow:
+                0 0 0 1px rgba(212, 168, 83, 0.08),
+                0 4px 24px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(212, 168, 83, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+
+
+        }
+
+        .card::before {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: 24px;
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 168, 83, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Corner ornaments */
+        .card::after {
+            content: '✦';
+            position: absolute;
+            top: 18px; right: 20px;
+            font-size: 0.9em;
+            color: rgba(212, 168, 83, 0.3);
+        }
+
+        .corner-ornament {
+            position: absolute;
+            font-size: 0.9em;
+            color: rgba(212, 168, 83, 0.3);
+        }
+        .corner-ornament.tl { top: 18px; left: 20px; }
+        .corner-ornament.bl { bottom: 18px; left: 20px; }
+        .corner-ornament.br { bottom: 18px; right: 20px; }
+
+        .card.fade-out {
+            opacity: 0 !important;
+            transform: scale(0.97) translateY(6px) !important;
+        }
+
+        @keyframes cardReveal {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .card-glow {
+            position: absolute; inset: -2px;
+            border-radius: 26px;
+            background: transparent;
+            transition: box-shadow 0.5s ease;
+            pointer-events: none;
+        }
+        .card:hover .card-glow, .card.lit .card-glow {
+            box-shadow: 0 0 60px rgba(212, 168, 83, 0.12), 0 0 100px rgba(201, 117, 138, 0.08);
+        }
+
+        .card-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: iconPulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 12px rgba(212, 168, 83, 0.4));
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.08) rotate(2deg); }
+        }
+
+        .card-category {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 0.7em;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            opacity: 0.85;
+        }
+
+        .card-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.15em, 3vw, 1.6em);
+            line-height: 1.65;
+            color: var(--cream);
+            font-weight: 400;
+            max-width: 540px;
+        }
+
+        /* ── BUTTON ────────────────────────────────────────── */
+        .button-container {
+            text-align: center;
+            margin-top: 8px;
+            animation: cardReveal 2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        .btn {
+            position: relative;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 0.85em;
+            padding: 18px 48px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        .btn-border {
+            position: absolute; inset: 0;
+            border-radius: 60px;
+            border: 1px solid rgba(212, 168, 83, 0.4);
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(201, 117, 138, 0.06));
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(212, 168, 83, 0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        .btn-fill {
+            position: absolute; inset: 0;
+            border-radius: 60px;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.25), rgba(201, 117, 138, 0.15));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover .btn-fill { transform: scaleX(1); }
+        .btn:hover .btn-border {
+            border-color: rgba(212, 168, 83, 0.7);
+            box-shadow: 0 0 30px rgba(212, 168, 83, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .btn:hover { color: #fff9e6; transform: translateY(-2px); }
+        .btn:active { transform: translateY(0px); }
+
+        .btn span { position: relative; z-index: 1; }
+
+        /* ── COUNTER ───────────────────────────────────────── */
+        .counter {
+            text-align: center;
+            margin-top: 28px;
+            font-style: italic;
+            font-size: 1em;
+            color: var(--cream-dim);
+            opacity: 0.65;
+            letter-spacing: 0.5px;
+            min-height: 1.5em;
+            animation: cardReveal 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        /* ── FOOTER ────────────────────────────────────────── */
+        footer {
+            text-align: center;
+            margin-top: 56px;
+            animation: cardReveal 2s cubic-bezier(0.16, 1, 0.3, 1) 1s both;
+        }
+
+        .footer-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15em;
+            color: var(--cream-dim);
+            opacity: 0.7;
+            display: flex; align-items: center; gap: 14px; justify-content: center;
+        }
+
+        .heart {
+            display: inline-block;
+            color: var(--rose);
+            font-style: normal;
+            animation: heartbeat 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 6px rgba(201, 117, 138, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        /* ── RESPONSIVE ────────────────────────────────────── */
+        @media (max-width: 600px) {
+            body { padding: 20px 16px 50px; align-items: flex-start; padding-top: 24px; }
+            header { margin-bottom: 36px; }
+            h1 { font-size: clamp(2.2em, 12vw, 3.5em); }
+            .card { min-height: 280px; padding: 36px 24px; border-radius: 18px; }
+            .card-text { font-size: 1.1em; }
+            .card-icon { font-size: 2.8em; }
+            .moon { width: 60px; height: 60px; top: 16px; right: 16px; }
+            .divider { width: 220px; }
+            footer { margin-top: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+    <div class="aurora"></div>
+
+    <div class="moon">
+        <div class="moon-body">
+            <div class="moon-craters"></div>
+        </div>
+    </div>
+
+    <canvas class="stars-canvas" id="starsCanvas"></canvas>
+
+    <div class="container">
+        <header>
+            <p class="pre-title">A love letter in many parts</p>
+            <h1>Raine</h1>
+            <p class="subtitle-hebrew">Neshama Sheli 💗</p>
+            <p class="subtitle">Daily Affirmations of Love</p>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-gem"></div>
+                <div class="divider-line"></div>
+            </div>
+        </header>
+
+        <div class="card-wrapper">
+            <div class="card" id="affirmationCard" onclick="generateAffirmation()">
+                <div class="card-glow"></div>
+                <span class="corner-ornament tl">✦</span>
+                <span class="corner-ornament bl">✦</span>
+                <span class="corner-ornament br">✦</span>
+
+                <div class="card-icon" id="cardIcon">✨</div>
+                <div class="card-category" id="cardCategory">Love</div>
+                <div class="card-text" id="cardText">Click to receive your affirmation, or press the button below</div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn" onclick="generateAffirmation()">
+                <div class="btn-border"></div>
+                <div class="btn-fill"></div>
+                <span>✦ &nbsp; New Affirmation &nbsp; ✦</span>
+            </button>
+        </div>
+
+        <p class="counter" id="counter"></p>
+
+        <footer>
+            <p class="footer-text">
+                You are loved <span class="heart">♥</span>
+                You are cherished <span class="heart">♥</span>
+                You are magic
+            </p>
+        </footer>
+    </div>
+
+    <script>
+    // ── STARS CANVAS ─────────────────────────────────────────
+    (function() {
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let W, H;
+
+        // Star colours: mostly white/blue-white, some warm
+        const starTints = [
+            [255, 252, 240], // warm white
+            [240, 248, 255], // blue-white
+            [255, 255, 255], // pure white
+            [255, 240, 200], // slight gold
+            [200, 220, 255], // blue
+        ];
+
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+
+        function createStars() {
+            stars = [];
+            // Layer 1: distant tiny stars , move very slowly
+            for (let i = 0; i < 120; i++) {
+                const t = starTints[Math.floor(Math.random() * starTints.length)];
+                stars.push({
+                    x: Math.random() * W, y: Math.random() * H,
+                    r: Math.random() * 0.7 + 0.2,
+                    alpha: Math.random() * 0.5 + 0.2,
+                    twinkleSpeed: Math.random() * 0.008 + 0.002,
+                    twinklePhase: Math.random() * Math.PI * 2,
+                    driftX: (Math.random() - 0.5) * 0.015,
+                    driftY: (Math.random() - 0.5) * 0.008,
+                    color: t, layer: 0
+                });
+            }
+            // Layer 2: mid stars
+            for (let i = 0; i < 55; i++) {
+                const t = starTints[Math.floor(Math.random() * starTints.length)];
+                stars.push({
+                    x: Math.random() * W, y: Math.random() * H,
+                    r: Math.random() * 0.8 + 0.5,
+                    alpha: Math.random() * 0.6 + 0.3,
+                    twinkleSpeed: Math.random() * 0.015 + 0.006,
+                    twinklePhase: Math.random() * Math.PI * 2,
+                    driftX: (Math.random() - 0.5) * 0.025,
+                    driftY: (Math.random() - 0.5) * 0.012,
+                    color: t, layer: 1
+                });
+            }
+            // Layer 3: bright foreground stars , most visible drift
+            for (let i = 0; i < 18; i++) {
+                const t = starTints[Math.floor(Math.random() * starTints.length)];
+                stars.push({
+                    x: Math.random() * W, y: Math.random() * H,
+                    r: Math.random() * 1.2 + 0.9,
+                    alpha: Math.random() * 0.5 + 0.5,
+                    twinkleSpeed: Math.random() * 0.02 + 0.008,
+                    twinklePhase: Math.random() * Math.PI * 2,
+                    driftX: (Math.random() - 0.5) * 0.04,
+                    driftY: (Math.random() - 0.5) * 0.018,
+                    color: t, layer: 2
+                });
+            }
+        }
+
+        let frame = 0;
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            frame++;
+            stars.forEach(s => {
+                // Drift
+                s.x += s.driftX;
+                s.y += s.driftY;
+                // Wrap
+                if (s.x < -2) s.x = W + 2;
+                if (s.x > W + 2) s.x = -2;
+                if (s.y < -2) s.y = H + 2;
+                if (s.y > H + 2) s.y = -2;
+
+                // Twinkle
+                const a = s.alpha * (0.55 + 0.45 * Math.sin(s.twinklePhase + frame * s.twinkleSpeed));
+                const [r, g, b] = s.color;
+
+                // Glow for brighter stars
+                if (s.r > 0.9) {
+                    const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4);
+                    grd.addColorStop(0, `rgba(${r},${g},${b},${a * 0.25})`);
+                    grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r * 4, 0, Math.PI * 2);
+                    ctx.fillStyle = grd;
+                    ctx.fill();
+
+                    // Cross diffraction spike for the brightest
+                    if (s.r > 1.5) {
+                        ctx.save();
+                        ctx.globalAlpha = a * 0.18;
+                        ctx.strokeStyle = `rgb(${r},${g},${b})`;
+                        ctx.lineWidth = 0.5;
+                        const spike = s.r * 6;
+                        ctx.beginPath(); ctx.moveTo(s.x - spike, s.y); ctx.lineTo(s.x + spike, s.y); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(s.x, s.y - spike); ctx.lineTo(s.x, s.y + spike); ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+
+        resize(); createStars(); draw();
+        window.addEventListener('resize', () => { resize(); createStars(); });
+    })();
+
+    // ── SHOOTING STAR (one at a time, scheduled) ──────────────
+    function fireShootingStar() {
+        const el = document.createElement('div');
+        el.className = 'shooting-star';
+
+        const angle = -(12 + Math.random() * 22);
+        const len   = 140 + Math.random() * 180;
+        const travel = 500 + Math.random() * 400;
+        const dur   = (1.6 + Math.random() * 1.4).toFixed(2) + 's';
+
+        el.style.setProperty('--top',    (5  + Math.random() * 55) + '%');
+        el.style.setProperty('--left',   (15 + Math.random() * 65) + '%');
+        el.style.setProperty('--angle',  angle + 'deg');
+        el.style.setProperty('--len',    len + 'px');
+        el.style.setProperty('--travel', travel + 'px');
+        el.style.setProperty('--dur',    dur);
+        el.style.setProperty('--delay',  '0s');
+
+        document.body.appendChild(el);
+
+        const removeDur = (parseFloat(dur) + 0.3) * 1000;
+        setTimeout(() => el.remove(), removeDur);
+
+        // Schedule next one: every 9–18 seconds
+        const next = 9000 + Math.random() * 9000;
+        setTimeout(fireShootingStar, next);
+    }
+    // First star after 4–8s
+    setTimeout(fireShootingStar, 4000 + Math.random() * 4000);
+
+    // ── FLOATING PARTICLES ────────────────────────────────────
+    (function() {
+        for (let i = 0; i < 18; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = (Math.random() * 100) + '%';
+            p.style.setProperty('--dur', (12 + Math.random() * 16) + 's');
+            p.style.setProperty('--delay', (Math.random() * 15) + 's');
+            p.style.setProperty('--t', (Math.random() * 6.28).toFixed(2) + 'rad');
+            const colors = [
+                'rgba(212, 168, 83, 0.7)', 'rgba(255, 224, 138, 0.6)',
+                'rgba(201, 117, 138, 0.6)', 'rgba(180, 160, 230, 0.5)'
+            ];
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.boxShadow = `0 0 6px ${colors[Math.floor(Math.random() * colors.length)]}`;
+            if (Math.random() > 0.5) { p.style.width = '3px'; p.style.height = '3px'; }
+            document.body.appendChild(p);
+        }
+    })();
+
+    // ── AFFIRMATIONS DATA ──────────────────────────────────────
+    const affirmations = [
+        // HERBALIST & NATURE
+        { category: "Plant Witch", icon: "🌿", text: "I love how you know which plants do what, even if you sometimes forget about conversations, names and other stuff 🤭💃" },
+        { category: "Plant Witch", icon: "🌿", text: "Your herbal teas are amazing and I love how you get excited explaining what each ingredient does (even when I tell you all teas are the same) 💚" },
+        { category: "Plant Witch", icon: "🌱", text: "I love watching you hyperfocus on plant care , suddenly you've repotted everything and it's time to eat or walk the dog 🪴" },
+        { category: "Plant Witch", icon: "🍃", text: "You know so much about herbs and you light up when you teach me about them 🌿💕" },
+        { category: "Plant Witch", icon: "🌿", text: "I love how you turn our kitchen and the living room into an apothecary , I never know what's brewing. Literally. Is it a balm or a tea? 🍵😄" },
+        { category: "Plant Witch", icon: "🌾", text: "Your plant collection keeps growing and I'm here for it, even when there's no counter space left 🌱😅" },
+        { category: "Plant Witch", icon: "🍵", text: "The way you make teas with such care makes me feel loved (and also very hydrated) 💚☕" },
+        { category: "Plant Witch", icon: "🌿", text: "I love how passionate you are about herbalism , your eyes sparkle when you talk about it ✨🌱" },
+        // WITCHY WAYS
+        { category: "Witchy Vibes", icon: "🔮", text: "I love your witchy aesthetic — candles everywhere, charms on every surface, altars of power, and somehow it all works 🕯️✨" },
+        { category: "Witchy Vibes", icon: "🌙", text: "You: *checks moon phase* Me: *has no idea what day it is*. I love how you keep track of these things 🌙😂" },
+        { category: "Witchy Vibes", icon: "✨", text: "I love how you bring magic into everyday life (also where is your familiar?) 🐈🔮" },
+        { category: "Witchy Vibes", icon: "🕯️", text: "I love your altars and how they evolve with the seasons, even if I'm scared to touch anything , magiiiiiiic 😅🕯️" },
+        { category: "Witchy Vibes", icon: "🔮", text: "Your intuition is real (sometimes 🤭🤣) , trust your witch powers 💜" },
+        { category: "Witchy Vibes", icon: "🌙", text: "I love how witchy you are , moon water, teas, intention setting , you're the real deal ✨🌙" },
+        { category: "Witchy Vibes", icon: "⭐", text: "You've taught me that magic is real and it's in the little rituals and intentions we set 💫💕" },
+        { category: "Witchy Vibes", icon: "🔮", text: "I love your earrings collection almost as much as I love how you sometimes forget where you got them 😂💎" },
+        // FEMINIST FIRE
+        { category: "Feminist Queen", icon: "💪", text: "I love your commitment to justice and how you call me out when I need it (even when I'm being stubborn) 🔥✊" },
+        { category: "Feminist Queen", icon: "🔥", text: "Your voice is powerful and I love how you're never afraid to speak up for what's right ✊💕" },
+        { category: "Feminist Queen", icon: "💪", text: "I love how you stand up for people and call out nonsense when you see it 🔥👏" },
+        { category: "Feminist Queen", icon: "✊", text: "You've helped me question things I never thought to question and I'm better for it 💭💪" },
+        { category: "Feminist Queen", icon: "🔥", text: "Your feminism isn't just talk , you live it every day and it's inspiring 💜✨" },
+        { category: "Feminist Queen", icon: "💪", text: "I love how you celebrate and uplift other women , you're building the world you want to see 👭💕" },
+        { category: "Feminist Queen", icon: "✊", text: "You make me want to be braver and more vocal about what matters 🔥💚" },
+        // CURIOSITY & ADHD
+        { category: "Curious Mind", icon: "🌟", text: "I love your endless curiosity , you have 47 tabs open (if not in the computer, in your brain 😜) and I wouldn't have it any other way 💻😂" },
+        { category: "Curious Mind", icon: "🔍", text: "Life with you is never boring , you're always discovering something fascinating 🎯✨" },
+        { category: "Curious Mind", icon: "💭", text: "Your questions make me think in ways I never would have , you see connections everywhere 🧩🌈" },
+        { category: "Curious Mind", icon: "📖", text: "You're always reading or hearing about new stuff, falling down rabbit holes , your brain is amazing 🐰✨" },
+        { category: "Curious Mind", icon: "🌟", text: "I love how you question everything instead of just accepting the status quo 💭🔍" },
+        { category: "Curious Mind", icon: "🔍", text: "Your ADHD brain makes you see the world differently and I love that about you 💜🧠" },
+        // SOCIAL
+        { category: "Social Butterfly", icon: "👥", text: "I love how you can talk to anyone and make them feel comfortable , it's a superpower 🦋💬" },
+        { category: "Social Butterfly", icon: "💬", text: "You make friends everywhere we go 🌈👋" },
+        { category: "Social Butterfly", icon: "🌈", text: "Your openness and warmth create connection wherever you go 💕✨" },
+        { category: "Social Butterfly", icon: "👥", text: "I love watching you ask people thoughtful questions , you genuinely want to know them 💭💚" },
+        { category: "Social Butterfly", icon: "💬", text: "You remember details about people's lives and follow up , they know you care 📝💕" },
+        { category: "Social Butterfly", icon: "🌟", text: "Your social energy is contagious , you bring people together effortlessly 🎉👥" },
+        { category: "Social Butterfly", icon: "👥", text: "I love how you make space for everyone to be heard and seen 🤗💜" },
+        { category: "Social Butterfly", icon: "💬", text: "You connect people across differences with curiosity and kindness 🌉✨" },
+        // COOKING
+        { category: "Kitchen Witch", icon: "🍲", text: "I love every meal you make , you're seriously an amazing cook 👩‍🍳💕" },
+        { category: "Kitchen Witch", icon: "👩‍🍳", text: "You experiment fearlessly in the kitchen and it somehow always works out delicious 🥘✨" },
+        { category: "Kitchen Witch", icon: "🥘", text: "Your kitchen magic is real , how do you make vegetables taste that good?? 🥗😍" },
+        { category: "Kitchen Witch", icon: "🍲", text: "I love how you try new flavor combinations I'd never think of 🌶️🧪" },
+        { category: "Kitchen Witch", icon: "🍽️", text: "Every meal feels like you put love into it (because you do) 💚🍴" },
+        { category: "Kitchen Witch", icon: "🥗", text: "You make cooking look easy even when you're doing 5 things at once 👩‍🍳🔥" },
+        { category: "Kitchen Witch", icon: "🍲", text: "I love how you cook for people's needs without making it a big deal 💕🍽️" },
+        { category: "Kitchen Witch", icon: "👩‍🍳", text: "Your food is comfort, warmth, and home all in one plate 🏠💚" },
+        // CARING
+        { category: "Big Heart", icon: "💚", text: "I love how much you care about everyone in your life , you show up for people 🤗💕" },
+        { category: "Big Heart", icon: "🤗", text: "You notice when someone is struggling and actually reach out (not just think about it) 💚📱" },
+        { category: "Big Heart", icon: "💚", text: "Your compassion is real and consistent, even when you're overwhelmed yourself 💜✨" },
+        { category: "Big Heart", icon: "💝", text: "I love how you check in on people and actually remember what's going on in their lives 📝💕" },
+        { category: "Big Heart", icon: "🤗", text: "You hold space for people's feelings without trying to fix everything 🫂💚" },
+        { category: "Big Heart", icon: "💚", text: "Your care extends to everyone , people, animals, plants, the whole world 🌍💕" },
+        { category: "Big Heart", icon: "💝", text: "I love how you show up in practical ways , bringing food, listening, just being there 🍲💚" },
+        { category: "Big Heart", icon: "🤗", text: "Your caring nature makes the world a little bit softer and kinder 🌸💜" },
+        // PATIENCE
+        { category: "Patient Soul", icon: "🌙", text: "I love how you handle my grumpiness (and there's a lot of it sometimes 😅) 💜🙏" },
+        { category: "Patient Soul", icon: "🕊️", text: "When I'm being difficult, you give me space while staying present , that's magic 💚✨" },
+        { category: "Patient Soul", icon: "🌙", text: "You don't take my moods personally and that means everything 💜🫂" },
+        { category: "Patient Soul", icon: "🕊️", text: "I love how you let me come back to myself without pressure or judgment 🌙💕" },
+        { category: "Patient Soul", icon: "🌙", text: "Your patience with my process , however messy , is honestly incredible 💚🙏" },
+        { category: "Patient Soul", icon: "🕊️", text: "You understand that people need different things at different times 💭💜" },
+        { category: "Patient Soul", icon: "🌙", text: "I love how you stay calm when I'm stressed , you ground me 🧘‍♀️💚" },
+        { category: "Patient Soul", icon: "🕊️", text: "Your patience teaches me to be gentler with myself and others 🌸💕" },
+        // YOU BEING YOU
+        { category: "You Being You", icon: "✨", text: "You're complex, surprising, and I love discovering new layers of who you are 💕🎁" },
+        { category: "You Being You", icon: "💖", text: "I love that you're all of these things and so much more than I can put in words 💜✨" },
+        { category: "You Being You", icon: "✨", text: "You're a witch, herbalist, cook, feminist, friend, curious mind , and you're mine 💕🌙" },
+        { category: "You Being You", icon: "💖", text: "Every day with you is different and I want to keep learning who you are 🌈💚" },
+        { category: "You Being You", icon: "✨", text: "You make me want to be better just by being yourself so fully 💪💕" },
+        { category: "You Being You", icon: "💖", text: "I love your laugh, your brain, your heart, your fire , everything 🔥💚✨" },
+        { category: "You Being You", icon: "✨", text: "You're exactly who you're meant to be (ADHD brain and all 🧠💜)" },
+        { category: "You Being You", icon: "💖", text: "I love you when you're focused, when you're scattered , always 💕🌙" },
+        { category: "You Being You", icon: "✨", text: "You are loved beyond measure and needed more than you know 💚🫂" },
+        { category: "You Being You", icon: "💖", text: "Thank you for being you , messy, magical, real, perfect 🌟💕" },
+        // EXTRA
+        { category: "Everyday Magic", icon: "🌸", text: "I love how you find magic in ordinary moments 💫☕" },
+        { category: "Everyday Magic", icon: "🌸", text: "You notice beauty everywhere , sunsets, flowers, weird clouds 🌅🌸" },
+        { category: "Your Brain", icon: "🧠", text: "I love your ADHD brain , yes it forgets things but it also makes amazing connections 💭✨" },
+        { category: "Your Brain", icon: "🧠", text: "Your hyperfocus is impressive and also sometimes means I have to remind you to eat 😂🍕" },
+        { category: "Your Voice", icon: "🎤", text: "I love the sound of your voice whether you're excited or just rambling about your day 💬💕" },
+        { category: "Your Voice", icon: "🎤", text: "You speak your truth even when it's scary and that takes real courage 💪✨" },
+        { category: "Your Presence", icon: "🌺", text: "Being near you makes me feel more grounded and more myself 🧘‍♀️💚" },
+        { category: "Your Presence", icon: "🌺", text: "I love how you bring calm to my chaos (even when you're chaotic too 😄) 🌊💜" },
+        { category: "Your Growth", icon: "🌱", text: "I love watching you grow and change and become more yourself 🦋💕" },
+        { category: "Your Growth", icon: "🌱", text: "You're not afraid to look at yourself honestly and do the hard work 💪🌟" },
+        { category: "Your Joy", icon: "☀️", text: "I love your joy , when you're excited about something your whole face lights up 😊💕" },
+        { category: "Your Joy", icon: "☀️", text: "You find delight in simple things and it's contagious ✨🌈" },
+        { category: "Your Strength", icon: "🦋", text: "I love how strong you are, even when you don't feel it 💪💜" },
+        { category: "Your Strength", icon: "🦋", text: "You're so much more resilient than you give yourself credit for 🌟💚" },
+        { category: "Your Heart", icon: "🌷", text: "I love your soft heart even when the world demands hardness 💕🌸" },
+        { category: "Your Heart", icon: "🌷", text: "You let yourself feel deeply and that's real courage 💜🫂" },
+        { category: "Us Together", icon: "🌟", text: "I love building a life with you and creating our own weird traditions 🏠💕" },
+        { category: "Us Together", icon: "🌟", text: "You make me feel like we're on the same team , always 🤝💚" },
+        { category: "Gratitude", icon: "🙏", text: "I'm so grateful I found you , the universe did good 💫💕" },
+        { category: "Gratitude", icon: "🙏", text: "Thank you for choosing me, for staying, for loving me even when I'm difficult 💜🫂" },
+        { category: "The Real Stuff", icon: "💯", text: "I know I can be grumpy and stubborn sometimes and you love me anyway 😅💕" },
+        { category: "The Real Stuff", icon: "💯", text: "We're both messy humans and somehow it works , and I love that 🌈💚" },
+        { category: "ADHD Love", icon: "🧠", text: "I love you even when you forget what you walked into the room for (again 😂) 💕" },
+        { category: "ADHD Love", icon: "🧠", text: "Your 17 unfinished projects are part of your charm 💜✨" },
+    ];
+
+    let currentIndex = -1;
+    let viewedCount = 0;
+    let isAnimating = false;
+
+    function showCard() {
+        const card = document.getElementById('affirmationCard');
+        card.style.opacity = '1';
+        card.style.transform = 'scale(1) translateY(0)';
+    }
+
+    function hideCard(cb) {
+        const card = document.getElementById('affirmationCard');
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.97) translateY(6px)';
+        setTimeout(cb, 360);
+    }
+
+    function swapContent() {
+        const icon = document.getElementById('cardIcon');
+        const category = document.getElementById('cardCategory');
+        const text = document.getElementById('cardText');
+        const counter = document.getElementById('counter');
+
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * affirmations.length);
+        } while (newIndex === currentIndex && affirmations.length > 1);
+        currentIndex = newIndex;
+
+        const a = affirmations[currentIndex];
+        icon.textContent = a.icon;
+        category.textContent = a.category;
+        text.textContent = a.text;
+
+        viewedCount++;
+        counter.textContent = `${viewedCount} affirmation${viewedCount !== 1 ? 's' : ''} of love received ✨`;
+    }
+
+    function generateAffirmation() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        hideCard(() => {
+            swapContent();
+            // Double rAF ensures the browser processes the hide before showing
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                showCard();
+                setTimeout(() => { isAnimating = false; }, 360);
+            }));
+        });
+    }
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            swapContent();
+            requestAnimationFrame(() => requestAnimationFrame(showCard));
+        }, 600);
+    });
+    </script>
+</body>
+</html>
